@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <title>Recipe App</title>
+</head>
+
+<body>
+    
+    <header class="header">
+        <div class="container">
+            <h1 class="header__title">Recipe App</h1>
+            <h6 class="header__subtitle">by Steven</h6>
+        </div>
+    </header>
+
+    <div class="actions">
+        <div class="actions__container">
+            <div class="input__container">
+                <i class="fas fa-search"></i>
+                <input id="search-content" class="input" type="text" placeholder="Search">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h4 id="recipes-count">You have <span class="recipe--count"></span> recipe<span class="recipes-plural"></span>.</h4>
+        <div id="myRecipes"></div>
+        <button id="add-recipe" class="button">Add Recipe</button>
+    </div>
+
+    <script src="script/jquery-3.3.1.js"></script>
+    <script src="script/uuidv4.js"></script>
+    <script src="script/functions.js"></script>
+    <script src="script/script.js"></script>
+</body>
+
+</html>
