@@ -1,11 +1,16 @@
 let myRecipes = getSavedRecipes()
-renderRecipes(myRecipes)
+
+const filters = {
+    searchText: '',
+}
+
+renderRecipes(myRecipes, filters)
 
 $('#add-recipe').on('click', (e) => {
     const id = uuidv4()
     myRecipes.push({
         id,
-        title: 'New Recipe',
+        title: '',
         instructions: '',
         status: '',
         ingredients: []
@@ -16,25 +21,24 @@ $('#add-recipe').on('click', (e) => {
     the recipe who has the same id as the id in the URL.
     */
     location.assign(`/edit.html#${id}`)
+
+
+    // Setting the recipe count text in the home page
 })
 
-$('.recipe--count').html(myRecipes.length)
 
-if (myRecipes.length > 1) {
+
+if (myRecipes.length === 0) {
+    $('.recipe--count').html('no')
+} else {
+    $('.recipe--count').html(myRecipes.length)
+}
+
+if (myRecipes.length > 1 || myRecipes.length === 0) {
     $('.recipes-plural').html('s')
 }
 
-const filters = {
-    searchText: ''
-}
-
-const filteredRecipes = () => myRecipes.filter(recipe => recipe.title.includes(filters.searchText))
-$('#search-content').on('input', () => {
-    filters.searchText = $('#search-content').val()
-    console.log(filters.searchText)
-    $('#myRecipes').html('')
-  //  filteredRecipes()
-    renderRecipes(filteredRecipes())
+document.querySelector('#search-content').addEventListener('input', (e) => {
+    filters.searchText = e.target.value
+    renderRecipes(myRecipes, filters)
 })
-
-

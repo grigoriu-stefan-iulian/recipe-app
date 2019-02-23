@@ -41,7 +41,6 @@ const generateRecipeDOM = (recipeArray) => {
     recipeTitle.html(recipeArray.title)
     recipeStatus.html(recipeArray.status)
 
-    recipeTitle.addClass('container__recipe--title')
     recipeTitle.addClass('container__recipe--status')
     recipeContainer.addClass('container__recipe')
     recipeLinkArea.attr('href', `/edit.html#${recipeArray.id}`)
@@ -52,13 +51,15 @@ const generateRecipeDOM = (recipeArray) => {
     return recipeLinkArea
 }
 
-const renderRecipes = () => {
+const renderRecipes = (recipes, filters) => {
     const myRecipesEl = $('#myRecipes')
+    const filteredNotes = recipes.filter((recipe) => recipe.title.toLowerCase().includes(filters.searchText.toLowerCase()))
+
     myRecipesEl.html('')
-    if (myRecipes.length > 0) {
-        myRecipes.forEach((recipe) => {
-            const recipes = generateRecipeDOM(recipe)
-            myRecipesEl.append(recipes)
+    if (filteredNotes.length > 0) {
+        filteredNotes.forEach((recipe) => {
+            const newRecipes = generateRecipeDOM(recipe)
+            myRecipesEl.append(newRecipes)
         })
     } else {
         return
